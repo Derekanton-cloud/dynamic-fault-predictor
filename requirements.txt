@@ -1,0 +1,11 @@
+tensorflow==2.20.0
+scikit-learn==1.8.0
+xgboost==2.0.3
+pandas
+numpy
+matplotlib
+seaborn
+streamlit
+joblib
+imbalanced-learn
+plotly
