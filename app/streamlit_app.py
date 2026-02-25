@@ -80,10 +80,14 @@ model_choice_label = st.sidebar.selectbox(
 
 model_choice_map = {
     "Production (CNN)": "Production",
-    "Dynamic": "Dynamic",
+    "Dynamic (CNN)": "Dynamic",
     "Hybrid (CNN+XGBoost)": "Hybrid"
 }
-model_choice = model_choice_map[model_choice_label]
+model_choice = model_choice_map.get(model_choice_label)
+
+if model_choice is None:
+    st.error(f"Unsupported model selection: {model_choice_label}")
+    st.stop()
 
 threshold_placeholder = st.sidebar.empty()
 threshold_slider_placeholder = st.sidebar.empty()
@@ -125,8 +129,6 @@ if uploaded_file:
     X_features = df[feature_columns].copy()
     X_features = X_features.apply(pd.to_numeric, errors="coerce")
     X_features = X_features.fillna(X_features.median())
-    feature_matrix = X_features.values
-
     y_prob = None
     base_threshold = 0.5
     active_metadata = {}
@@ -154,7 +156,7 @@ if uploaded_file:
             st.stop()
 
         scaler = joblib.load(scaler_path)
-        X_scaled = scaler.transform(feature_matrix)
+        X_scaled = scaler.transform(X_features)
         X_cnn = X_scaled.reshape(X_scaled.shape[0], X_scaled.shape[1], 1)
 
         production_model = load_model(production_model_path)
@@ -190,7 +192,7 @@ if uploaded_file:
             st.stop()
 
         scaler = joblib.load(scaler_path)
-        X_scaled = scaler.transform(feature_matrix)
+        X_scaled = scaler.transform(X_features)
         X_cnn = X_scaled.reshape(X_scaled.shape[0], X_scaled.shape[1], 1)
 
         cnn_model = load_model(cnn_path)
@@ -232,7 +234,7 @@ if uploaded_file:
             st.stop()
 
         scaler = joblib.load(scaler_path)
-        X_scaled = scaler.transform(feature_matrix)
+        X_scaled = scaler.transform(X_features)
         X_cnn = X_scaled.reshape(X_scaled.shape[0], X_scaled.shape[1], 1)
 
         dynamic_model = load_model(model_path)
