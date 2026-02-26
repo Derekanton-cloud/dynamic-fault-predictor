@@ -5,7 +5,7 @@ import numpy as np
 import joblib
 
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense, Dropout, BatchNormalization
+from tensorflow.keras.layers import Input, Conv1D, MaxPooling1D, Flatten, Dense, Dropout, BatchNormalization
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 from tensorflow.keras.models import save_model
@@ -16,6 +16,7 @@ from src.utils.imbalance import ImbalanceHandler
 from src.utils.feature_validation import FeatureValidator
 from src.training.threshold_optimizer import ThresholdOptimizer
 from src.evaluation.evaluate import ModelEvaluator
+from src.evaluation.metric_analysis import threshold_sweep_analysis
 
 
 class ProductionTrainer:
@@ -31,7 +32,8 @@ class ProductionTrainer:
 
     def build_cnn(self, input_shape):
         model = Sequential([
-            Conv1D(64, 3, activation='relu', input_shape=input_shape),
+            Input(shape=input_shape),
+            Conv1D(64, 3, activation='relu'),
             BatchNormalization(),
             MaxPooling1D(2),
             Conv1D(128, 3, activation='relu'),
@@ -150,6 +152,15 @@ class ProductionTrainer:
             y_test,
             ensemble_test_prob,
             best_threshold,
+            model_name="hybrid_production_model"
+        )
+
+        # ---------------------------------------------------
+        # 8️⃣ Full Threshold Sensitivity Analysis (Professional)
+        # ---------------------------------------------------
+        threshold_sweep_analysis(
+            y_true=y_test,
+            y_prob=ensemble_test_prob,
             model_name="hybrid_production_model"
         )
 

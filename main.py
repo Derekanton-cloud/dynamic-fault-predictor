@@ -1,15 +1,57 @@
 import argparse
 import os
+import sys
 
-from src.training.train_production import train_production_model
-from src.training.retrain_dynamic import retrain_dynamic_model
-from src.inference.predict import ProductionPredictor
+
+def _venv_python_path(project_root: str) -> str | None:
+    candidates = [
+        os.path.join(project_root, "venv", "Scripts", "python.exe"),
+        os.path.join(project_root, ".venv", "Scripts", "python.exe"),
+        os.path.join(project_root, "venv", "bin", "python"),
+        os.path.join(project_root, ".venv", "bin", "python"),
+    ]
+
+    for path in candidates:
+        if os.path.exists(path):
+            return path
+    return None
+
+
+def _running_inside_venv() -> bool:
+    return sys.prefix != getattr(sys, "base_prefix", sys.prefix)
+
+
+def _ensure_venv_python():
+    if os.environ.get("DFP_BOOTSTRAPPED") == "1":
+        return
+
+    project_root = os.path.dirname(os.path.abspath(__file__))
+    venv_python = _venv_python_path(project_root)
+
+    if venv_python is None:
+        return
+
+    if _running_inside_venv():
+        return
+
+    try:
+        import tensorflow  # noqa: F401
+        return
+    except Exception:
+        pass
+
+    os.environ["DFP_BOOTSTRAPPED"] = "1"
+    os.execv(venv_python, [venv_python, *sys.argv])
+
+
+_ensure_venv_python()
 
 
 # -----------------------------
 # TRAIN PRODUCTION MODEL
 # -----------------------------
 def train_mode(dataset_path):
+    from src.training.train_production import train_production_model
     train_production_model(dataset_path)
 
 
@@ -17,6 +59,7 @@ def train_mode(dataset_path):
 # PREDICT USING PRODUCTION MODEL
 # -----------------------------
 def predict_mode(dataset_path):
+    from src.inference.predict import ProductionPredictor
     predictor = ProductionPredictor()
 
     results = predictor.predict_from_csv(dataset_path)
@@ -37,7 +80,7 @@ def predict_mode(dataset_path):
 # DYNAMIC RETRAIN MODE
 # -----------------------------
 def retrain_mode(dataset_path):
-
+    from src.training.retrain_dynamic import retrain_dynamic_model
     results = retrain_dynamic_model(dataset_path)
 
     print("\n🧠 Dynamic Retraining Complete")
