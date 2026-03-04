@@ -1,0 +1,650 @@
+<mxfile host="Electron" modified="2026-03-03T00:00:00.000Z" agent="GitHub Copilot" version="21.0.0" type="device">
+  <diagram name="Sequence Diagram – CNN Fault Prediction" id="uml-seq-cnn-fault">
+    <mxGraphModel dx="1654" dy="1169" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1260" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!--                       TITLE                        -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <mxCell id="2" value="Sequence Diagram – Software Fault Prediction using 1D CNN"
+          style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;
+                 fontSize=16;fontStyle=1;fontColor=#1a1a2e;"
+          vertex="1" parent="1">
+          <mxGeometry x="80" y="20" width="1560" height="38" as="geometry" />
+        </mxCell>
+
+        <mxCell id="3" value=""
+          style="endArrow=none;strokeColor=#1a1a2e;strokeWidth=2;fillColor=none;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="62" as="sourcePoint" />
+            <mxPoint x="1640" y="62" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!--              PARTICIPANT HEADER BOXES               -->
+        <!-- ═══════════════════════════════════════════════════ -->
+
+        <!-- P1: User / Developer  cx=110 -->
+        <mxCell id="4" value="&lt;b&gt;User / Developer&lt;/b&gt;"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;
+                 fontColor=#333333;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;"
+          vertex="1" parent="1">
+          <mxGeometry x="35" y="78" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- P2: Preprocessing Module  cx=320 -->
+        <mxCell id="5" value="&lt;b&gt;Preprocessing&lt;br&gt;Module&lt;/b&gt;"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;
+                 fontColor=#1a1a2e;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;"
+          vertex="1" parent="1">
+          <mxGeometry x="245" y="78" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- P3: Imbalance Handler  cx=530 -->
+        <mxCell id="6" value="&lt;b&gt;Imbalance&lt;br&gt;Handler&lt;/b&gt;"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;
+                 fontColor=#1a1a2e;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;"
+          vertex="1" parent="1">
+          <mxGeometry x="455" y="78" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- P4: 1D CNN Model  cx=740 -->
+        <mxCell id="7" value="&lt;b&gt;1D CNN Model&lt;/b&gt;"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;
+                 fontColor=#1a1a2e;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;"
+          vertex="1" parent="1">
+          <mxGeometry x="665" y="78" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- P5: Threshold Optimizer  cx=950 -->
+        <mxCell id="8" value="&lt;b&gt;Threshold&lt;br&gt;Optimizer&lt;/b&gt;"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;
+                 fontColor=#1a1a2e;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;"
+          vertex="1" parent="1">
+          <mxGeometry x="875" y="78" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- P6: Evaluation Module  cx=1160 -->
+        <mxCell id="9" value="&lt;b&gt;Evaluation&lt;br&gt;Module&lt;/b&gt;"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;
+                 fontColor=#1a1a2e;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;"
+          vertex="1" parent="1">
+          <mxGeometry x="1085" y="78" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- P7: Result Output System  cx=1370 -->
+        <mxCell id="10" value="&lt;b&gt;Result Output&lt;br&gt;System&lt;/b&gt;"
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;
+                 fontColor=#1a1a2e;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;"
+          vertex="1" parent="1">
+          <mxGeometry x="1295" y="78" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!--              VERTICAL LIFELINE (DASHED)             -->
+        <!-- ═══════════════════════════════════════════════════ -->
+
+        <!-- Lifeline P1: User  x=110 -->
+        <mxCell id="11" value=""
+          style="endArrow=none;dashed=1;dashPattern=8 4;strokeColor=#999999;strokeWidth=1.5;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="128" as="sourcePoint" />
+            <mxPoint x="110" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Lifeline P2: Preprocessing  x=320 -->
+        <mxCell id="12" value=""
+          style="endArrow=none;dashed=1;dashPattern=8 4;strokeColor=#999999;strokeWidth=1.5;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="320" y="128" as="sourcePoint" />
+            <mxPoint x="320" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Lifeline P3: Imbalance Handler  x=530 -->
+        <mxCell id="13" value=""
+          style="endArrow=none;dashed=1;dashPattern=8 4;strokeColor=#999999;strokeWidth=1.5;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="530" y="128" as="sourcePoint" />
+            <mxPoint x="530" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Lifeline P4: CNN  x=740 -->
+        <mxCell id="14" value=""
+          style="endArrow=none;dashed=1;dashPattern=8 4;strokeColor=#999999;strokeWidth=1.5;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="740" y="128" as="sourcePoint" />
+            <mxPoint x="740" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Lifeline P5: Threshold Optimizer  x=950 -->
+        <mxCell id="15" value=""
+          style="endArrow=none;dashed=1;dashPattern=8 4;strokeColor=#999999;strokeWidth=1.5;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="950" y="128" as="sourcePoint" />
+            <mxPoint x="950" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Lifeline P6: Evaluation Module  x=1160 -->
+        <mxCell id="16" value=""
+          style="endArrow=none;dashed=1;dashPattern=8 4;strokeColor=#999999;strokeWidth=1.5;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1160" y="128" as="sourcePoint" />
+            <mxPoint x="1160" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Lifeline P7: Result Output  x=1370 -->
+        <mxCell id="17" value=""
+          style="endArrow=none;dashed=1;dashPattern=8 4;strokeColor=#999999;strokeWidth=1.5;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1370" y="128" as="sourcePoint" />
+            <mxPoint x="1370" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!--                  ACTIVATION BARS                    -->
+        <!-- ═══════════════════════════════════════════════════ -->
+
+        <!-- Preprocessing activation  y=178 to y=368  h=190 -->
+        <mxCell id="18" value=""
+          style="fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;"
+          vertex="1" parent="1">
+          <mxGeometry x="313" y="178" width="14" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- Imbalance Handler activation  y=390 to y=445  h=55 -->
+        <mxCell id="19" value=""
+          style="fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;"
+          vertex="1" parent="1">
+          <mxGeometry x="523" y="390" width="14" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- CNN activation  y=480 to y=860  h=380 -->
+        <mxCell id="20" value=""
+          style="fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;"
+          vertex="1" parent="1">
+          <mxGeometry x="733" y="480" width="14" height="380" as="geometry" />
+        </mxCell>
+
+        <!-- Threshold Optimizer activation  y=670 to y=800  h=130 -->
+        <mxCell id="21" value=""
+          style="fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;"
+          vertex="1" parent="1">
+          <mxGeometry x="943" y="670" width="14" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Evaluation Module activation  y=840 to y=1020  h=180 -->
+        <mxCell id="22" value=""
+          style="fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;"
+          vertex="1" parent="1">
+          <mxGeometry x="1153" y="840" width="14" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- Result Output activation  y=1050 to y=1110  h=60 -->
+        <mxCell id="23" value=""
+          style="fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;"
+          vertex="1" parent="1">
+          <mxGeometry x="1363" y="1050" width="14" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!--          INTERNAL PROCESSING ANNOTATION BOXES       -->
+        <!-- ═══════════════════════════════════════════════════ -->
+
+        <!-- Preprocessing internal steps annotation -->
+        <mxCell id="24" value="&lt;b&gt;Internal Processing:&lt;/b&gt;&lt;br&gt;▸ Handle missing values&lt;br&gt;▸ Convert defect column → binary (0/1)&lt;br&gt;▸ Feature scaling (StandardScaler)&lt;br&gt;▸ Train / Val / Test Split&lt;br&gt;▸ Reshape to (samples, features, 1)"
+          style="shape=note;whiteSpace=wrap;html=1;fontSize=9.5;align=left;strokeColor=#6c8ebf;
+                 fillColor=#f0f8ff;fontColor=#1a1a2e;spacingLeft=6;verticalAlign=top;
+                 labelBackgroundColor=none;"
+          vertex="1" parent="1">
+          <mxGeometry x="333" y="192" width="215" height="115" as="geometry" />
+        </mxCell>
+
+        <!-- CNN internal layers annotation -->
+        <mxCell id="25" value="&lt;b&gt;CNN Architecture:&lt;/b&gt;&lt;br&gt;▸ Conv1D Layer&lt;br&gt;▸ Batch Normalization&lt;br&gt;▸ MaxPooling&lt;br&gt;▸ Flatten&lt;br&gt;▸ Dense + Dropout&lt;br&gt;▸ Sigmoid Output"
+          style="shape=note;whiteSpace=wrap;html=1;fontSize=9.5;align=left;strokeColor=#6c8ebf;
+                 fillColor=#f0f8ff;fontColor=#1a1a2e;spacingLeft=6;verticalAlign=top;
+                 labelBackgroundColor=none;"
+          vertex="1" parent="1">
+          <mxGeometry x="753" y="494" width="180" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Threshold Optimizer internal steps annotation -->
+        <mxCell id="26" value="&lt;b&gt;Sweep Algorithm:&lt;/b&gt;&lt;br&gt;▸ Threshold Sweep (0.01 – 0.99)&lt;br&gt;▸ Compute Accuracy, Recall, Precision&lt;br&gt;▸ Policy: Max Precision | Recall ≥ 0.75&lt;br&gt;▸ Select Optimal Threshold = 0.32"
+          style="shape=note;whiteSpace=wrap;html=1;fontSize=9.5;align=left;strokeColor=#6c8ebf;
+                 fillColor=#f0f8ff;fontColor=#1a1a2e;spacingLeft=6;verticalAlign=top;
+                 labelBackgroundColor=none;"
+          vertex="1" parent="1">
+          <mxGeometry x="963" y="680" width="220" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Evaluation Module internal steps annotation -->
+        <mxCell id="27" value="&lt;b&gt;Evaluation Pipeline:&lt;/b&gt;&lt;br&gt;▸ Apply threshold (0.32)&lt;br&gt;▸ Compute Accuracy, Recall, Precision&lt;br&gt;▸ Compute F1-score, ROC-AUC, PR-AUC&lt;br&gt;▸ Generate Confusion Matrix&lt;br&gt;▸ Generate Trade-off Graphs"
+          style="shape=note;whiteSpace=wrap;html=1;fontSize=9.5;align=left;strokeColor=#6c8ebf;
+                 fillColor=#f0f8ff;fontColor=#1a1a2e;spacingLeft=6;verticalAlign=top;
+                 labelBackgroundColor=none;"
+          vertex="1" parent="1">
+          <mxGeometry x="1173" y="852" width="220" height="115" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!--          STEP LABELS (left margin annotations)      -->
+        <!-- ═══════════════════════════════════════════════════ -->
+
+        <mxCell id="28s" value="① Dataset Upload"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;
+                 fontSize=9;fontStyle=3;fontColor=#666666;"
+          vertex="1" parent="1">
+          <mxGeometry x="0" y="172" width="32" height="14" as="geometry" />
+        </mxCell>
+
+        <mxCell id="29s" value="② Preprocessing"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;
+                 fontSize=9;fontStyle=3;fontColor=#666666;"
+          vertex="1" parent="1">
+          <mxGeometry x="0" y="228" width="32" height="14" as="geometry" />
+        </mxCell>
+
+        <mxCell id="30s" value="③ Imbalance"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;
+                 fontSize=9;fontStyle=3;fontColor=#666666;"
+          vertex="1" parent="1">
+          <mxGeometry x="0" y="388" width="32" height="14" as="geometry" />
+        </mxCell>
+
+        <mxCell id="31s" value="④ Training"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;
+                 fontSize=9;fontStyle=3;fontColor=#666666;"
+          vertex="1" parent="1">
+          <mxGeometry x="0" y="478" width="32" height="14" as="geometry" />
+        </mxCell>
+
+        <mxCell id="32s" value="⑤ Threshold"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;
+                 fontSize=9;fontStyle=3;fontColor=#666666;"
+          vertex="1" parent="1">
+          <mxGeometry x="0" y="668" width="32" height="14" as="geometry" />
+        </mxCell>
+
+        <mxCell id="33s" value="⑥ Evaluation"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;
+                 fontSize=9;fontStyle=3;fontColor=#666666;"
+          vertex="1" parent="1">
+          <mxGeometry x="0" y="838" width="32" height="14" as="geometry" />
+        </mxCell>
+
+        <mxCell id="34s" value="⑦ Output"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;
+                 fontSize=9;fontStyle=3;fontColor=#666666;"
+          vertex="1" parent="1">
+          <mxGeometry x="0" y="1048" width="32" height="14" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!--                  SEQUENCE MESSAGES                  -->
+        <!-- ═══════════════════════════════════════════════════ -->
+
+        <!-- ─── Step 1: Load NASA JM1 Dataset (CSV) ─── -->
+        <!-- User → Preprocessing  y=185 -->
+        <mxCell id="35" value="Load NASA JM1 Dataset (CSV)"
+          style="endArrow=block;endFill=1;endSize=8;strokeColor=#1a1a2e;strokeWidth=1.8;
+                 fontStyle=0;fontSize=10;fontColor=#1a1a2e;labelPosition=center;
+                 verticalLabelPosition=top;verticalAlign=bottom;align=center;
+                 labelBackgroundColor=#ffffff;labelBorderColor=none;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="185" as="sourcePoint" />
+            <mxPoint x="313" y="185" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ─── Step 2: Preprocessed Dataset Ready (return) ─── -->
+        <!-- Preprocessing → User  y=368  dashed return -->
+        <mxCell id="36" value="Preprocessed Dataset Ready"
+          style="endArrow=open;endFill=0;endSize=8;dashed=1;dashPattern=6 4;
+                 strokeColor=#555555;strokeWidth=1.5;fontStyle=2;fontSize=10;
+                 fontColor=#555555;labelPosition=center;verticalLabelPosition=top;
+                 verticalAlign=bottom;align=center;labelBackgroundColor=#ffffff;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="313" y="368" as="sourcePoint" />
+            <mxPoint x="110" y="368" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ─── Step 3a: Apply SMOTE on Training Set ─── -->
+        <!-- Preprocessing → ImbalanceHandler  y=395 -->
+        <mxCell id="37" value="Apply SMOTE on Training Set"
+          style="endArrow=block;endFill=1;endSize=8;strokeColor=#1a1a2e;strokeWidth=1.8;
+                 fontStyle=0;fontSize=10;fontColor=#1a1a2e;labelPosition=center;
+                 verticalLabelPosition=top;verticalAlign=bottom;align=center;
+                 labelBackgroundColor=#ffffff;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="327" y="395" as="sourcePoint" />
+            <mxPoint x="523" y="395" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ─── Step 3b: Balanced Training Data (return) ─── -->
+        <!-- ImbalanceHandler → Preprocessing  y=445  dashed -->
+        <mxCell id="38" value="Balanced Training Data"
+          style="endArrow=open;endFill=0;endSize=8;dashed=1;dashPattern=6 4;
+                 strokeColor=#555555;strokeWidth=1.5;fontStyle=2;fontSize=10;
+                 fontColor=#555555;labelPosition=center;verticalLabelPosition=top;
+                 verticalAlign=bottom;align=center;labelBackgroundColor=#ffffff;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="523" y="445" as="sourcePoint" />
+            <mxPoint x="327" y="445" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ─── Step 4: Train Model (Balanced Training Data) ─── -->
+        <!-- Preprocessing → CNN  y=485 -->
+        <mxCell id="39" value="Train Model (Balanced Training Data)"
+          style="endArrow=block;endFill=1;endSize=8;strokeColor=#1a1a2e;strokeWidth=1.8;
+                 fontStyle=0;fontSize=10;fontColor=#1a1a2e;labelPosition=center;
+                 verticalLabelPosition=top;verticalAlign=bottom;align=center;
+                 labelBackgroundColor=#ffffff;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="327" y="485" as="sourcePoint" />
+            <mxPoint x="733" y="485" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ─── CNN Self-loop: Validation Probabilities Ready ─── -->
+        <!-- CNN internal self-activation label  y=660 -->
+        <mxCell id="40" value="[Validation Probabilities]"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;
+                 fontSize=9;fontStyle=2;fontColor=#1a6aaa;"
+          vertex="1" parent="1">
+          <mxGeometry x="753" y="648" width="180" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- ─── Step 5a: Send Validation Probabilities ─── -->
+        <!-- CNN → ThresholdOptimizer  y=675 -->
+        <mxCell id="41" value="Send Validation Probabilities"
+          style="endArrow=block;endFill=1;endSize=8;strokeColor=#1a1a2e;strokeWidth=1.8;
+                 fontStyle=0;fontSize=10;fontColor=#1a1a2e;labelPosition=center;
+                 verticalLabelPosition=top;verticalAlign=bottom;align=center;
+                 labelBackgroundColor=#ffffff;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="747" y="675" as="sourcePoint" />
+            <mxPoint x="943" y="675" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ─── Step 5b: Optimal Threshold = 0.32 (return) ─── -->
+        <!-- ThresholdOptimizer → CNN  y=800  dashed -->
+        <mxCell id="42" value="Optimal Threshold = 0.32"
+          style="endArrow=open;endFill=0;endSize=8;dashed=1;dashPattern=6 4;
+                 strokeColor=#555555;strokeWidth=1.5;fontStyle=2;fontSize=10;
+                 fontColor=#555555;labelPosition=center;verticalLabelPosition=top;
+                 verticalAlign=bottom;align=center;labelBackgroundColor=#ffffff;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="943" y="800" as="sourcePoint" />
+            <mxPoint x="747" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ─── Step 6a: Send Test Probabilities ─── -->
+        <!-- CNN → Evaluation  y=845 -->
+        <mxCell id="43" value="Send Test Probabilities"
+          style="endArrow=block;endFill=1;endSize=8;strokeColor=#1a1a2e;strokeWidth=1.8;
+                 fontStyle=0;fontSize=10;fontColor=#1a1a2e;labelPosition=center;
+                 verticalLabelPosition=top;verticalAlign=bottom;align=center;
+                 labelBackgroundColor=#ffffff;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="747" y="845" as="sourcePoint" />
+            <mxPoint x="1153" y="845" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ─── Step 6b: Provide Optimal Threshold (0.32) ─── -->
+        <!-- ThresholdOptimizer → Evaluation  y=862 -->
+        <mxCell id="44" value="Provide Optimal Threshold (0.32)"
+          style="endArrow=block;endFill=1;endSize=8;strokeColor=#1a1a2e;strokeWidth=1.8;
+                 fontStyle=0;fontSize=10;fontColor=#1a1a2e;labelPosition=center;
+                 verticalLabelPosition=top;verticalAlign=bottom;align=center;
+                 labelBackgroundColor=#ffffff;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="957" y="862" as="sourcePoint" />
+            <mxPoint x="1153" y="862" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ─── Step 6c: Final Metrics & Visualizations (return to User) ─── -->
+        <!-- Evaluation → User  y=1020  dashed long arrow -->
+        <mxCell id="45" value="Final Metrics &amp; Visualizations"
+          style="endArrow=open;endFill=0;endSize=8;dashed=1;dashPattern=6 4;
+                 strokeColor=#555555;strokeWidth=1.5;fontStyle=2;fontSize=10;
+                 fontColor=#555555;labelPosition=center;verticalLabelPosition=top;
+                 verticalAlign=bottom;align=center;labelBackgroundColor=#ffffff;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1153" y="1020" as="sourcePoint" />
+            <mxPoint x="110" y="1020" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ─── Step 7a: Store Results (JSON, CSV, Graphs) ─── -->
+        <!-- Evaluation → ResultOutput  y=1055 -->
+        <mxCell id="46" value="Store Results (JSON, CSV, Graphs)"
+          style="endArrow=block;endFill=1;endSize=8;strokeColor=#1a1a2e;strokeWidth=1.8;
+                 fontStyle=0;fontSize=10;fontColor=#1a1a2e;labelPosition=center;
+                 verticalLabelPosition=top;verticalAlign=bottom;align=center;
+                 labelBackgroundColor=#ffffff;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1167" y="1055" as="sourcePoint" />
+            <mxPoint x="1363" y="1055" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ─── Step 7b: Results Ready for Report (return to User) ─── -->
+        <!-- ResultOutput → User  y=1110  dashed long arrow -->
+        <mxCell id="47" value="Results Ready for Report"
+          style="endArrow=open;endFill=0;endSize=8;dashed=1;dashPattern=6 4;
+                 strokeColor=#555555;strokeWidth=1.5;fontStyle=2;fontSize=10;
+                 fontColor=#555555;labelPosition=center;verticalLabelPosition=top;
+                 verticalAlign=bottom;align=center;labelBackgroundColor=#ffffff;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1363" y="1110" as="sourcePoint" />
+            <mxPoint x="110" y="1110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!--          HORIZONTAL SEPARATOR BANDS (BG)           -->
+        <!-- ═══════════════════════════════════════════════════ -->
+
+        <!-- Band 1: Dataset Upload  y=162 h=28 -->
+        <mxCell id="48" value=""
+          style="fillColor=#f0f4f8;strokeColor=none;opacity=60;"
+          vertex="1" parent="1">
+          <mxGeometry x="34" y="162" width="1566" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Band 3: Imbalance Handling  y=372 h=28 -->
+        <mxCell id="49" value=""
+          style="fillColor=#f0f4f8;strokeColor=none;opacity=60;"
+          vertex="1" parent="1">
+          <mxGeometry x="34" y="372" width="1566" height="82" as="geometry" />
+        </mxCell>
+
+        <!-- Band 5: Threshold Optimization  y=658 h=28 -->
+        <mxCell id="50" value=""
+          style="fillColor=#f0f4f8;strokeColor=none;opacity=60;"
+          vertex="1" parent="1">
+          <mxGeometry x="34" y="658" width="1566" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Band 6: Evaluation messages  y=828 h=42 -->
+        <mxCell id="51" value=""
+          style="fillColor=#f0f4f8;strokeColor=none;opacity=60;"
+          vertex="1" parent="1">
+          <mxGeometry x="34" y="828" width="1566" height="42" as="geometry" />
+        </mxCell>
+
+        <!-- Band 7: Output  y=1038 h=28 -->
+        <mxCell id="52" value=""
+          style="fillColor=#f0f4f8;strokeColor=none;opacity=60;"
+          vertex="1" parent="1">
+          <mxGeometry x="34" y="1038" width="1566" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!--   RE-DRAW ACTIVATIONS ON TOP OF BANDS (z-order)    -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!--  (activation bars above bands – separate top-layer cells) -->
+
+        <!-- Preprocessing activation (top) -->
+        <mxCell id="53" value=""
+          style="fillColor=#bdd7f0;strokeColor=#6c8ebf;strokeWidth=1.5;"
+          vertex="1" parent="1">
+          <mxGeometry x="313" y="178" width="14" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- Imbalance activation (top) -->
+        <mxCell id="54" value=""
+          style="fillColor=#bdd7f0;strokeColor=#6c8ebf;strokeWidth=1.5;"
+          vertex="1" parent="1">
+          <mxGeometry x="523" y="390" width="14" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- CNN activation (top) -->
+        <mxCell id="55" value=""
+          style="fillColor=#bdd7f0;strokeColor=#6c8ebf;strokeWidth=1.5;"
+          vertex="1" parent="1">
+          <mxGeometry x="733" y="480" width="14" height="380" as="geometry" />
+        </mxCell>
+
+        <!-- ThresholdOpt activation (top) -->
+        <mxCell id="56" value=""
+          style="fillColor=#bdd7f0;strokeColor=#6c8ebf;strokeWidth=1.5;"
+          vertex="1" parent="1">
+          <mxGeometry x="943" y="670" width="14" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Evaluation activation (top) -->
+        <mxCell id="57" value=""
+          style="fillColor=#bdd7f0;strokeColor=#6c8ebf;strokeWidth=1.5;"
+          vertex="1" parent="1">
+          <mxGeometry x="1153" y="840" width="14" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- ResultOutput activation (top) -->
+        <mxCell id="58" value=""
+          style="fillColor=#bdd7f0;strokeColor=#6c8ebf;strokeWidth=1.5;"
+          vertex="1" parent="1">
+          <mxGeometry x="1363" y="1050" width="14" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!--            LEGEND (bottom right corner)             -->
+        <!-- ═══════════════════════════════════════════════════ -->
+
+        <mxCell id="60" value="&lt;b&gt;Legend&lt;/b&gt;"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;
+                 verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#1a1a2e;"
+          vertex="1" parent="1">
+          <mxGeometry x="1430" y="200" width="160" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: solid arrow = synchronous call -->
+        <mxCell id="61" value=""
+          style="endArrow=block;endFill=1;endSize=7;strokeColor=#1a1a2e;strokeWidth=1.8;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1430" y="228" as="sourcePoint" />
+            <mxPoint x="1490" y="228" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="62" value="Synchronous Call"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;
+                 verticalAlign=middle;fontSize=9;fontColor=#333333;"
+          vertex="1" parent="1">
+          <mxGeometry x="1496" y="220" width="130" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: dashed arrow = return -->
+        <mxCell id="63" value=""
+          style="endArrow=open;endFill=0;endSize=7;dashed=1;dashPattern=6 4;
+                 strokeColor=#555555;strokeWidth=1.5;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1430" y="252" as="sourcePoint" />
+            <mxPoint x="1490" y="252" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="64" value="Return Message"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;
+                 verticalAlign=middle;fontSize=9;fontColor=#333333;"
+          vertex="1" parent="1">
+          <mxGeometry x="1496" y="244" width="130" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: activation bar -->
+        <mxCell id="65" value=""
+          style="fillColor=#bdd7f0;strokeColor=#6c8ebf;strokeWidth=1.5;"
+          vertex="1" parent="1">
+          <mxGeometry x="1452" y="266" width="14" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="66" value="Activation (Processing)"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;
+                 verticalAlign=middle;fontSize=9;fontColor=#333333;"
+          vertex="1" parent="1">
+          <mxGeometry x="1472" y="266" width="160" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: note box -->
+        <mxCell id="67" value=""
+          style="shape=note;fillColor=#f0f8ff;strokeColor=#6c8ebf;strokeWidth=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="1430" y="302" width="24" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="68" value="Internal Steps Note"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;
+                 verticalAlign=middle;fontSize=9;fontColor=#333333;"
+          vertex="1" parent="1">
+          <mxGeometry x="1460" y="302" width="140" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!--      PIPELINE META NOTE (top right corner)         -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <mxCell id="70" value="&lt;b&gt;Pipeline Type:&lt;/b&gt; Offline Research&lt;br&gt;&lt;b&gt;Dataset:&lt;/b&gt; NASA JM1 (CSV)&lt;br&gt;&lt;b&gt;Model:&lt;/b&gt; 1D CNN (Keras)&lt;br&gt;&lt;b&gt;Threshold:&lt;/b&gt; Optimized at 0.32&lt;br&gt;&lt;b&gt;Imbalance:&lt;/b&gt; SMOTE"
+          style="shape=note;whiteSpace=wrap;html=1;fontSize=9.5;align=left;strokeColor=#6c8ebf;
+                 fillColor=#fff9e6;fontColor=#1a1a2e;spacingLeft=6;verticalAlign=top;"
+          vertex="1" parent="1">
+          <mxGeometry x="1430" y="78" width="200" height="110" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

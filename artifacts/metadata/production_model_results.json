@@ -1,12 +1,12 @@
 {
-    "accuracy": 0.7278,
-    "precision": 0.3381,
-    "recall": 0.7404,
-    "f1_score": 0.4642,
-    "roc_auc": 0.7976,
-    "pr_auc": 0.5045,
+    "accuracy": 0.8004,
+    "precision": 0.4301,
+    "recall": 0.7803,
+    "f1_score": 0.5545,
+    "roc_auc": 0.8709,
     "threshold": 0.32,
-    "precision_faulty": 0.3381,
-    "recall_faulty": 0.7404,
-    "f1_faulty": 0.4642
+    "ensemble_weights": {"cnn": 0.3, "xgb": 0.7},
+    "precision_faulty": 0.4301,
+    "recall_faulty": 0.7803,
+    "f1_faulty": 0.5545
 }

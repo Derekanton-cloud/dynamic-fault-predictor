@@ -2,6 +2,8 @@ import argparse
 import os
 import sys
 
+from src.evaluation.showcase_runner import run_showcase
+
 
 def _venv_python_path(project_root: str) -> str | None:
     candidates = [
@@ -59,6 +61,8 @@ def train_mode(dataset_path):
 # PREDICT USING PRODUCTION MODEL
 # -----------------------------
 def predict_mode(dataset_path):
+    import numpy as np
+    from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
     from src.inference.predict import ProductionPredictor
     predictor = ProductionPredictor()
 
@@ -67,11 +71,39 @@ def predict_mode(dataset_path):
     os.makedirs("reports", exist_ok=True)
     output_path = "reports/predictions_output.csv"
 
-    results["predictions_dataframe"].to_csv(output_path, index=False)
+    df = results["predictions_dataframe"]
+    df.to_csv(output_path, index=False)
 
-    print("\n🚀 Prediction Complete")
-    print(f"📊 Threshold Used: {results['threshold_used']}")
-    print(f"📦 Model Version: {results['model_version']}")
+    # Compute and display classification metrics
+    if "defects" in df.columns:
+        y_true = np.where(df["defects"] > 0, 1, 0)
+        y_pred = df["prediction"].values
+        y_prob = df["fault_probability"].values
+
+        acc = accuracy_score(y_true, y_pred)
+        prec = precision_score(y_true, y_pred, zero_division=0)
+        rec = recall_score(y_true, y_pred, zero_division=0)
+        f1 = f1_score(y_true, y_pred, zero_division=0)
+        roc = roc_auc_score(y_true, y_prob)
+
+        print("\n" + "=" * 50)
+        print("  PRODUCTION HYBRID MODEL — PREDICTION RESULTS")
+        print("=" * 50)
+        print(f"  CNN Weight:    {predictor.cnn_weight}")
+        print(f"  XGB Weight:    {predictor.xgb_weight}")
+        print(f"  Threshold:     {results['threshold_used']}")
+        print("-" * 50)
+        print(f"  Accuracy:      {acc:.4f}")
+        print(f"  Precision:     {prec:.4f}")
+        print(f"  Recall:        {rec:.4f}")
+        print(f"  F1 Score:      {f1:.4f}")
+        print(f"  ROC-AUC:       {roc:.4f}")
+        print("-" * 50)
+        print(f"  Dataset Size:  {len(df)}")
+        print(f"  Predicted Faults: {int(y_pred.sum())} / {len(df)}")
+        print("=" * 50)
+
+    print(f"\n📦 Model Version: {results['model_version']}")
     print(f"📅 Training Date: {results['training_date']}")
     print(f"📁 Predictions saved to: {output_path}")
 
@@ -99,27 +131,37 @@ if __name__ == "__main__":
         "--mode",
         type=str,
         required=True,
-        help="train | predict | retrain"
+        help="train | predict | retrain | showcase"
     )
 
     parser.add_argument(
         "--data",
         type=str,
-        required=True,
-        help="Path to dataset CSV"
+        required=False,
+        default=None,
+        help="Path to dataset CSV (required for train, predict, retrain)"
     )
 
     args = parser.parse_args()
 
     if args.mode == "train":
+        if not args.data:
+            parser.error("--data is required for mode 'train'.")
         train_mode(args.data)
 
     elif args.mode == "predict":
+        if not args.data:
+            parser.error("--data is required for mode 'predict'.")
         predict_mode(args.data)
 
     elif args.mode == "retrain":
+        if not args.data:
+            parser.error("--data is required for mode 'retrain'.")
         retrain_mode(args.data)
+
+    elif args.mode == "showcase":
+        run_showcase()
 
     else:
         print("❌ Invalid mode.")
-        print("Use --mode train | predict | retrain")
+        print("Use --mode train | predict | retrain | showcase")

@@ -134,33 +134,42 @@ if uploaded_file:
     active_metadata = {}
 
     if model_choice == "Production":
-        results_path = os.path.join(METADATA_DIR, "production_model_results.json")
+        # Try hybrid showcase metadata first, then fall back to legacy
+        showcase_meta_path = os.path.join(METADATA_DIR, "hybrid_showcase.json")
+        legacy_meta_path = os.path.join(METADATA_DIR, "production_model_results.json")
 
-        if os.path.exists(results_path):
-            with open(results_path, "r") as f:
+        if os.path.exists(showcase_meta_path):
+            with open(showcase_meta_path, "r") as f:
+                active_metadata = json.load(f)
+        elif os.path.exists(legacy_meta_path):
+            with open(legacy_meta_path, "r") as f:
                 active_metadata = json.load(f)
 
         scaler_path = os.path.join(SCALER_DIR, "scaler.pkl")
+        cnn_path = os.path.join(MODEL_DIR, "production", "cnn_model.keras")
+        xgb_path = os.path.join(MODEL_DIR, "production", "xgb_model.pkl")
 
-        production_model_candidates = [
-            os.path.join(MODEL_DIR, "production", "cnn_model.keras"),
-            os.path.join(MODEL_DIR, "production", "fault_predictor.keras")
-        ]
-        production_model_path = next(
-            (path for path in production_model_candidates if os.path.exists(path)),
-            None
-        )
-
-        if production_model_path is None or not os.path.exists(scaler_path):
-            st.error("Required production CNN artifacts are missing. Train the production CNN model first.")
+        if not os.path.exists(cnn_path) or not os.path.exists(scaler_path):
+            st.error("Required production model artifacts are missing. Train the production model first.")
             st.stop()
 
         scaler = joblib.load(scaler_path)
         X_scaled = scaler.transform(X_features)
         X_cnn = X_scaled.reshape(X_scaled.shape[0], X_scaled.shape[1], 1)
 
-        production_model = load_model(production_model_path)
-        y_prob = production_model.predict(X_cnn, verbose=0).ravel()
+        production_cnn = load_model(cnn_path)
+        cnn_prob = production_cnn.predict(X_cnn, verbose=0).ravel()
+
+        # Hybrid ensemble when XGBoost is available
+        if os.path.exists(xgb_path):
+            xgb_model = joblib.load(xgb_path)
+            xgb_prob = xgb_model.predict_proba(X_scaled)[:, 1]
+            cnn_weight = active_metadata.get("cnn_weight", 0.3)
+            xgb_weight = active_metadata.get("xgb_weight", 0.7)
+            y_prob = cnn_weight * cnn_prob + xgb_weight * xgb_prob
+        else:
+            y_prob = cnn_prob
+
         base_threshold = active_metadata.get("threshold", 0.5)
 
     elif model_choice == "Hybrid":
@@ -201,8 +210,8 @@ if uploaded_file:
         cnn_prob = cnn_model.predict(X_cnn, verbose=0).ravel()
         xgb_prob = xgb_model.predict_proba(X_scaled)[:, 1]
 
-        cnn_weight = active_metadata.get("cnn_weight", 0.6)
-        xgb_weight = active_metadata.get("xgb_weight", 0.4)
+        cnn_weight = active_metadata.get("cnn_weight", 0.3)
+        xgb_weight = active_metadata.get("xgb_weight", 0.7)
 
         y_prob = cnn_weight * cnn_prob + xgb_weight * xgb_prob
         base_threshold = active_metadata.get("threshold", 0.5)

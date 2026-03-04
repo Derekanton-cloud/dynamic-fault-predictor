@@ -1,0 +1,534 @@
+<mxfile host="Electron" modified="2026-03-03T00:00:00.000Z" agent="GitHub Copilot" version="21.0.0" type="device">
+  <diagram name="Use Case Diagram – CNN Fault Prediction" id="uml-uc-cnn-fault">
+    <mxGraphModel dx="1654" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1"
+                  connect="1" arrows="1" fold="1" page="1" pageScale="1"
+                  pageWidth="1700" pageHeight="1150" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!--                          TITLE                                -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <mxCell id="2"
+          value="Use Case Diagram – Software Fault Prediction using 1D CNN"
+          style="text;html=1;strokeColor=none;fillColor=none;align=center;
+                 verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1a1a2e;"
+          vertex="1" parent="1">
+          <mxGeometry x="180" y="14" width="1180" height="36" as="geometry" />
+        </mxCell>
+
+        <!-- title underline -->
+        <mxCell id="3" value=""
+          style="endArrow=none;strokeColor=#1a1a2e;strokeWidth=1.5;fillColor=none;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="54" as="sourcePoint" />
+            <mxPoint x="1360" y="54" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!--                    SYSTEM BOUNDARY BOX                        -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <mxCell id="4"
+          value="Software Fault Prediction System (1D CNN Based)"
+          style="swimlane;startSize=38;fillColor=#f8f9ff;strokeColor=#1a1a2e;
+                 strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#1a1a2e;
+                 swimlaneLine=1;horizontal=1;align=center;verticalAlign=middle;
+                 swimlaneHead=0;swimlaneBody=0;"
+          vertex="1" parent="1">
+          <mxGeometry x="195" y="62" width="1150" height="980" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!--                        ACTORS                                 -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+
+        <!-- Primary Actor: System Developer / Researcher (LEFT) -->
+        <!-- Stick-figure head -->
+        <mxCell id="5" value=""
+          style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#333333;
+                 strokeWidth=2;"
+          vertex="1" parent="1">
+          <mxGeometry x="42" y="410" width="40" height="40" as="geometry" />
+        </mxCell>
+        <!-- Body line -->
+        <mxCell id="6" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=2;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="62" y="450" as="sourcePoint" />
+            <mxPoint x="62" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Left arm -->
+        <mxCell id="7" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=2;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="62" y="468" as="sourcePoint" />
+            <mxPoint x="28" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Right arm -->
+        <mxCell id="8" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=2;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="62" y="468" as="sourcePoint" />
+            <mxPoint x="96" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Left leg -->
+        <mxCell id="9" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=2;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="62" y="510" as="sourcePoint" />
+            <mxPoint x="36" y="548" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Right leg -->
+        <mxCell id="10" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=2;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="62" y="510" as="sourcePoint" />
+            <mxPoint x="88" y="548" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Actor label -->
+        <mxCell id="11"
+          value="&lt;b&gt;System Developer /&lt;br&gt;Researcher&lt;/b&gt;"
+          style="text;html=1;strokeColor=none;fillColor=none;align=center;
+                 verticalAlign=top;fontSize=11;fontColor=#1a1a2e;"
+          vertex="1" parent="1">
+          <mxGeometry x="10" y="554" width="104" height="36" as="geometry" />
+        </mxCell>
+
+        <!-- Secondary Actor: Project Evaluator (RIGHT) -->
+        <!-- Head -->
+        <mxCell id="12" value=""
+          style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#333333;
+                 strokeWidth=2;"
+          vertex="1" parent="1">
+          <mxGeometry x="1478" y="430" width="40" height="40" as="geometry" />
+        </mxCell>
+        <!-- Body line -->
+        <mxCell id="13" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=2;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1498" y="470" as="sourcePoint" />
+            <mxPoint x="1498" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Left arm -->
+        <mxCell id="14" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=2;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1498" y="488" as="sourcePoint" />
+            <mxPoint x="1464" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Right arm -->
+        <mxCell id="15" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=2;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1498" y="488" as="sourcePoint" />
+            <mxPoint x="1532" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Left leg -->
+        <mxCell id="16" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=2;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1498" y="530" as="sourcePoint" />
+            <mxPoint x="1472" y="568" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Right leg -->
+        <mxCell id="17" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=2;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1498" y="530" as="sourcePoint" />
+            <mxPoint x="1524" y="568" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Actor label -->
+        <mxCell id="18"
+          value="&lt;b&gt;Project&lt;br&gt;Evaluator&lt;/b&gt;"
+          style="text;html=1;strokeColor=none;fillColor=none;align=center;
+                 verticalAlign=top;fontSize=11;fontColor=#1a1a2e;"
+          vertex="1" parent="1">
+          <mxGeometry x="1458" y="574" width="80" height="36" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!--               USE CASE OVALS (inside boundary)                -->
+        <!--  Geometry is RELATIVE to the swimlane parent (id=4)           -->
+        <!--  swimlane header = 38px, so internal y offset = real_y - 62 - 38 = real_y - 100 -->
+        <!--  Let me use absolute coords by placing them as children of root (id=1) -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+
+        <!-- UC1: Load NASA JM1 Dataset  cx=620 cy=195 (absolute) w=210 h=58 -->
+        <mxCell id="20"
+          value="Load NASA JM1 Dataset"
+          style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1a1a2e;
+                 strokeWidth=1.8;fontSize=11;fontColor=#1a1a2e;align=center;
+                 verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="515" y="178" width="210" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- UC2: Train 1D CNN Model  cx=620 cy=380 w=210 h=58 -->
+        <mxCell id="21"
+          value="Train 1D CNN Model"
+          style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1a1a2e;
+                 strokeWidth=1.8;fontSize=11;fontColor=#1a1a2e;align=center;
+                 verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="515" y="360" width="210" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- UC3: Preprocess Dataset  cx=350 cy=530 w=200 h=58 -->
+        <mxCell id="22"
+          value="Preprocess Dataset"
+          style="ellipse;whiteSpace=wrap;html=1;fillColor=#eaf4fd;strokeColor=#1a1a2e;
+                 strokeWidth=1.8;fontSize=11;fontColor=#1a1a2e;align=center;
+                 verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="250" y="512" width="200" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- UC4: Handle Class Imbalance  cx=350 cy=660 w=200 h=58 -->
+        <mxCell id="23"
+          value="Handle Class Imbalance"
+          style="ellipse;whiteSpace=wrap;html=1;fillColor=#eaf4fd;strokeColor=#1a1a2e;
+                 strokeWidth=1.8;fontSize=11;fontColor=#1a1a2e;align=center;
+                 verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="250" y="642" width="200" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- UC5: Evaluate Model Performance  cx=1000 cy=380 w=225 h=58 -->
+        <mxCell id="24"
+          value="Evaluate Model Performance"
+          style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1a1a2e;
+                 strokeWidth=1.8;fontSize=11;fontColor=#1a1a2e;align=center;
+                 verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="887" y="360" width="225" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- Evaluation sub-note inside UC5 -->
+        <mxCell id="25"
+          value="&lt;font style=&apos;font-size:8px; color:#555555;&apos;&gt;&lt;i&gt;Accuracy · Recall · Precision&lt;br&gt;F1-score · ROC-AUC · PR-AUC&lt;/i&gt;&lt;/font&gt;"
+          style="text;html=1;strokeColor=none;fillColor=none;align=center;
+                 verticalAlign=middle;fontSize=8;fontColor=#555555;"
+          vertex="1" parent="1">
+          <mxGeometry x="887" y="418" width="225" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- UC6: Optimize Classification Threshold  cx=830 cy=528 w=225 h=58 -->
+        <mxCell id="26"
+          value="Optimize Classification Threshold"
+          style="ellipse;whiteSpace=wrap;html=1;fillColor=#eaf4fd;strokeColor=#1a1a2e;
+                 strokeWidth=1.8;fontSize=11;fontColor=#1a1a2e;align=center;
+                 verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="717" y="510" width="225" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- UC7: Generate Performance Visualizations  cx=1080 cy=528 w=225 h=58 -->
+        <mxCell id="27"
+          value="Generate Performance Visualizations"
+          style="ellipse;whiteSpace=wrap;html=1;fillColor=#eaf4fd;strokeColor=#1a1a2e;
+                 strokeWidth=1.8;fontSize=11;fontColor=#1a1a2e;align=center;
+                 verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="965" y="510" width="230" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- UC8: Export Results for Documentation  cx=875 cy=730 w=230 h=58 -->
+        <mxCell id="28"
+          value="Export Results for Documentation"
+          style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1a1a2e;
+                 strokeWidth=1.8;fontSize=11;fontColor=#1a1a2e;align=center;
+                 verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="760" y="710" width="230" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!--          ASSOCIATION LINES: Developer → Use Cases             -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+
+        <!-- Developer → Load NASA JM1 Dataset -->
+        <mxCell id="30" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=1.5;"
+          edge="1" parent="1" source="11" target="20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Developer → Train 1D CNN Model -->
+        <mxCell id="31" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=1.5;"
+          edge="1" parent="1" source="11" target="21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Developer → Evaluate Model Performance -->
+        <mxCell id="32" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=1.5;"
+          edge="1" parent="1" source="11" target="24">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="62" y="460" />
+              <mxPoint x="999" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Developer → Export Results for Documentation -->
+        <mxCell id="33" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=1.5;"
+          edge="1" parent="1" source="11" target="28">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="62" y="600" />
+              <mxPoint x="875" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!--          ASSOCIATION LINES: Project Evaluator → Use Cases     -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+
+        <!-- Project Evaluator → Evaluate Model Performance -->
+        <mxCell id="34" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=1.5;"
+          edge="1" parent="1" source="18" target="24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Project Evaluator → Export Results for Documentation -->
+        <mxCell id="35" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=1.5;"
+          edge="1" parent="1" source="18" target="28">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1498" y="620" />
+              <mxPoint x="1060" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!--     <<include>> DASHED ARROWS  (base → included)              -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+
+        <!-- Train 1D CNN Model  → <<include>> → Preprocess Dataset -->
+        <mxCell id="40"
+          value="&lt;&lt;include&gt;&gt;"
+          style="endArrow=open;endFill=0;endSize=8;dashed=1;dashPattern=8 4;
+                 strokeColor=#1a1a2e;strokeWidth=1.5;fontStyle=2;fontSize=10;
+                 fontColor=#1a1a2e;labelPosition=center;verticalLabelPosition=top;
+                 verticalAlign=bottom;align=center;labelBackgroundColor=#f8f9ff;"
+          edge="1" parent="1" source="21" target="22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Train 1D CNN Model → <<include>> → Handle Class Imbalance -->
+        <mxCell id="41"
+          value="&lt;&lt;include&gt;&gt;"
+          style="endArrow=open;endFill=0;endSize=8;dashed=1;dashPattern=8 4;
+                 strokeColor=#1a1a2e;strokeWidth=1.5;fontStyle=2;fontSize=10;
+                 fontColor=#1a1a2e;labelPosition=center;verticalLabelPosition=top;
+                 verticalAlign=bottom;align=center;labelBackgroundColor=#f8f9ff;"
+          edge="1" parent="1" source="21" target="23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Evaluate Model Performance → <<include>> → Optimize Classification Threshold -->
+        <mxCell id="42"
+          value="&lt;&lt;include&gt;&gt;"
+          style="endArrow=open;endFill=0;endSize=8;dashed=1;dashPattern=8 4;
+                 strokeColor=#1a1a2e;strokeWidth=1.5;fontStyle=2;fontSize=10;
+                 fontColor=#1a1a2e;labelPosition=center;verticalLabelPosition=top;
+                 verticalAlign=bottom;align=center;labelBackgroundColor=#f8f9ff;"
+          edge="1" parent="1" source="24" target="26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Evaluate Model Performance → <<include>> → Generate Performance Visualizations -->
+        <mxCell id="43"
+          value="&lt;&lt;include&gt;&gt;"
+          style="endArrow=open;endFill=0;endSize=8;dashed=1;dashPattern=8 4;
+                 strokeColor=#1a1a2e;strokeWidth=1.5;fontStyle=2;fontSize=10;
+                 fontColor=#1a1a2e;labelPosition=center;verticalLabelPosition=top;
+                 verticalAlign=bottom;align=center;labelBackgroundColor=#f8f9ff;"
+          edge="1" parent="1" source="24" target="27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!--     DEPENDENCY FLOW: Load Dataset → Train Model               -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+
+        <!-- Load NASA JM1 → Train Model (flow dependency, thin open arrow) -->
+        <mxCell id="44" value=""
+          style="endArrow=open;endFill=0;endSize=7;strokeColor=#888888;
+                 strokeWidth=1.2;dashed=0;"
+          edge="1" parent="1" source="20" target="21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Train Model → Evaluate Model (flow dependency) -->
+        <mxCell id="45" value=""
+          style="endArrow=open;endFill=0;endSize=7;strokeColor=#888888;
+                 strokeWidth=1.2;dashed=0;"
+          edge="1" parent="1" source="21" target="24">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="740" y="389" />
+              <mxPoint x="887" y="389" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Evaluate Model → Export Results (flow dependency) -->
+        <mxCell id="46" value=""
+          style="endArrow=open;endFill=0;endSize=7;strokeColor=#888888;
+                 strokeWidth=1.2;dashed=0;"
+          edge="1" parent="1" source="24" target="28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!--                    LEGEND (bottom right)                      -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+
+        <mxCell id="50" value=""
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f9ff;
+                 strokeColor=#1a1a2e;strokeWidth=1.2;"
+          vertex="1" parent="1">
+          <mxGeometry x="1400" y="720" width="250" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="51" value="&lt;b&gt;Legend&lt;/b&gt;"
+          style="text;html=1;strokeColor=none;fillColor=none;align=center;
+                 verticalAlign=middle;fontSize=11;fontColor=#1a1a2e;fontStyle=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="1400" y="724" width="250" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Solid line = association -->
+        <mxCell id="52" value=""
+          style="endArrow=none;strokeColor=#333333;strokeWidth=1.5;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1418" y="768" as="sourcePoint" />
+            <mxPoint x="1468" y="768" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="53" value="Association (Actor ↔ Use Case)"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;
+                 verticalAlign=middle;fontSize=9.5;fontColor=#333333;"
+          vertex="1" parent="1">
+          <mxGeometry x="1474" y="760" width="168" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- Dashed arrow = <<include>> -->
+        <mxCell id="54" value=""
+          style="endArrow=open;endFill=0;endSize=7;dashed=1;dashPattern=8 4;
+                 strokeColor=#1a1a2e;strokeWidth=1.5;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1418" y="800" as="sourcePoint" />
+            <mxPoint x="1468" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="55" value="&lt;&lt;include&gt;&gt; Relationship"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;
+                 verticalAlign=middle;fontSize=9.5;fontColor=#333333;"
+          vertex="1" parent="1">
+          <mxGeometry x="1474" y="792" width="168" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- Flow arrow -->
+        <mxCell id="56" value=""
+          style="endArrow=open;endFill=0;endSize=7;strokeColor=#888888;strokeWidth=1.2;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1418" y="832" as="sourcePoint" />
+            <mxPoint x="1468" y="832" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="57" value="Pipeline Flow (sequence)"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;
+                 verticalAlign=middle;fontSize=9.5;fontColor=#333333;"
+          vertex="1" parent="1">
+          <mxGeometry x="1474" y="824" width="168" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- Light fill oval = included sub-use-case -->
+        <mxCell id="58" value=""
+          style="ellipse;whiteSpace=wrap;html=1;fillColor=#eaf4fd;strokeColor=#1a1a2e;
+                 strokeWidth=1.2;"
+          vertex="1" parent="1">
+          <mxGeometry x="1418" y="854" width="36" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="59" value="Included Use Case"
+          style="text;html=1;strokeColor=none;fillColor=none;align=left;
+                 verticalAlign=middle;fontSize=9.5;fontColor=#333333;"
+          vertex="1" parent="1">
+          <mxGeometry x="1460" y="854" width="182" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!--         EVALUATION METRICS CALLOUT NOTE                       -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+
+        <mxCell id="60"
+          value="&lt;b&gt;Internal Metrics Computed:&lt;/b&gt;&lt;br&gt;• Accuracy&lt;br&gt;• Recall&lt;br&gt;• Precision&lt;br&gt;• F1-score&lt;br&gt;• ROC-AUC&lt;br&gt;• PR-AUC&lt;br&gt;• Confusion Matrix"
+          style="shape=callout;whiteSpace=wrap;html=1;fontSize=9.5;align=left;
+                 strokeColor=#6c8ebf;fillColor=#fff9e6;fontColor=#1a1a2e;
+                 spacingLeft=6;verticalAlign=top;
+                 calloutDirection=left;size=15;perimeter=calloutPerimeter;"
+          vertex="1" parent="1">
+          <mxGeometry x="1115" y="330" width="175" height="155" as="geometry" />
+        </mxCell>
+
+        <!-- connector from Evaluate oval to callout -->
+        <mxCell id="61" value=""
+          style="endArrow=none;strokeColor=#6c8ebf;strokeWidth=1;dashed=1;dashPattern=4 4;"
+          edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1112" y="389" as="sourcePoint" />
+            <mxPoint x="1115" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!--              PIPELINE META NOTE  (top-right)                  -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <mxCell id="62"
+          value="&lt;b&gt;System Scope:&lt;/b&gt; Offline Research&lt;br&gt;&lt;b&gt;Dataset:&lt;/b&gt; NASA JM1 (CSV)&lt;br&gt;&lt;b&gt;Model:&lt;/b&gt; 1D CNN (Keras)&lt;br&gt;&lt;b&gt;Imbalance:&lt;/b&gt; SMOTE&lt;br&gt;&lt;b&gt;Threshold:&lt;/b&gt; Optimized (0.32)"
+          style="shape=note;whiteSpace=wrap;html=1;fontSize=10;align=left;
+                 strokeColor=#6c8ebf;fillColor=#fff9e6;fontColor=#1a1a2e;
+                 spacingLeft=6;verticalAlign=top;"
+          vertex="1" parent="1">
+          <mxGeometry x="1400" y="565" width="220" height="120" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

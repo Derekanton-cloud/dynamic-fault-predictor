@@ -15,7 +15,11 @@ class ProductionPredictor:
         self.cnn_model_path = "models/production/cnn_model.keras"
         self.xgb_model_path = "models/production/xgb_model.pkl"
         self.scaler_path = "artifacts/scalers/scaler.pkl"
-        self.metadata_path = "artifacts/metadata/production_metadata.json"
+
+        # Prefer frozen showcase metadata when available
+        showcase_path = "artifacts/metadata/hybrid_showcase.json"
+        legacy_path = "artifacts/metadata/production_metadata.json"
+        self.metadata_path = showcase_path if os.path.exists(showcase_path) else legacy_path
 
         self._validate_files()
 
@@ -26,9 +30,9 @@ class ProductionPredictor:
         with open(self.metadata_path, "r") as f:
             self.metadata = json.load(f)
 
-        self.threshold = self.metadata.get("threshold", 0.5)
-        self.cnn_weight = self.metadata.get("cnn_weight", 0.6)
-        self.xgb_weight = self.metadata.get("xgb_weight", 0.4)
+        self.threshold = self.metadata.get("threshold", 0.32)
+        self.cnn_weight = self.metadata.get("cnn_weight", 0.3)
+        self.xgb_weight = self.metadata.get("xgb_weight", 0.7)
 
     def _validate_files(self):
         if not os.path.exists(self.cnn_model_path):

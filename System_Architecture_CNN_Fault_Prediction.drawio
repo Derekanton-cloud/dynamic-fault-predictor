@@ -1,0 +1,91 @@
+<mxfile host="65bd71144e">
+    <diagram name="CNN Fault Prediction Pipeline" id="architecture-diagram">
+        <mxGraphModel dx="1507" dy="930" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1200" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="System Architecture – 1D CNN Based Software Fault Prediction" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="400" y="30" width="800" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="footer" value="Dataset: NASA JM1 | Model: 1D CNN | Threshold: 0.32" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#666666" parent="1" vertex="1">
+                    <mxGeometry x="400" y="820" width="800" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="block1" value="&lt;b&gt;NASA JM1 Dataset&lt;/b&gt;&lt;br&gt;&lt;br&gt;• Static Code Metrics&lt;br&gt;&amp;nbsp;&amp;nbsp;(21 features)&lt;br&gt;&lt;br&gt;• Defects Column" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;verticalAlign=middle;spacingLeft=20;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="120" width="150" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow1" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="block1" target="block2" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="240" y="180" as="sourcePoint"/>
+                        <mxPoint x="290" y="130" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="block2" value="&lt;b&gt;Data Preprocessing&lt;/b&gt;&lt;br&gt;&lt;br&gt;• Missing Value Handling&lt;br&gt;• Binary Label Conversion&lt;br&gt;&amp;nbsp;&amp;nbsp;(defects &amp;gt; 0 → 1)&lt;br&gt;• Stratified Split" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;align=left;verticalAlign=middle;spacingLeft=20;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="120" width="160" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow2" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="block2" target="block3" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="450" y="180" as="sourcePoint"/>
+                        <mxPoint x="500" y="130" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="block3" value="&lt;b&gt;Feature Scaling&lt;/b&gt;&lt;br&gt;&lt;br&gt;• StandardScaler&lt;br&gt;&lt;br&gt;• Normalized Features" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;align=left;verticalAlign=middle;spacingLeft=20;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="120" width="150" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow3" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="block3" target="block4" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="650" y="180" as="sourcePoint"/>
+                        <mxPoint x="700" y="130" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="block4" value="&lt;b&gt;Reshaping for CNN&lt;/b&gt;&lt;br&gt;&lt;br&gt;• Input Shape:&lt;br&gt;&amp;nbsp;&amp;nbsp;(samples, features, 1)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;align=left;verticalAlign=middle;spacingLeft=20;" parent="1" vertex="1">
+                    <mxGeometry x="690" y="120" width="150" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow4" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="block4" target="block5" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="850" y="180" as="sourcePoint"/>
+                        <mxPoint x="900" y="130" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="block5" value="&lt;b&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;1D CNN Model&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;Conv1D (64 filters)&lt;br&gt;↓&lt;br&gt;Batch Normalization&lt;br&gt;↓&lt;br&gt;MaxPooling&lt;br&gt;↓&lt;br&gt;Conv1D (128 filters)&lt;br&gt;↓&lt;br&gt;Dense (128)&lt;br&gt;↓&lt;br&gt;Dropout&lt;br&gt;↓&lt;br&gt;Sigmoid Output" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="880" y="100" width="180" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow5" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="block5" target="block6" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="1060" y="240" as="sourcePoint"/>
+                        <mxPoint x="1110" y="190" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="block6" value="&lt;b&gt;Probability Output&lt;/b&gt;&lt;br&gt;&lt;br&gt;• Output Range:&lt;br&gt;&amp;nbsp;&amp;nbsp;0 to 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;verticalAlign=middle;spacingLeft=20;" parent="1" vertex="1">
+                    <mxGeometry x="1110" y="120" width="150" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow6" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="block6" target="block7" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="1175" y="250" as="sourcePoint"/>
+                        <mxPoint x="1175" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="block7" value="&lt;b&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Optimized Threshold&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;(0.32)&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;• Decision Rule&lt;br&gt;• Optimized via&lt;br&gt;&amp;nbsp;&amp;nbsp;Threshold Sweep" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=3;fontSize=12;align=left;verticalAlign=middle;spacingLeft=20;" parent="1" vertex="1">
+                    <mxGeometry x="1110" y="290" width="150" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow7" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="block7" target="block8" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="1175" y="420" as="sourcePoint"/>
+                        <mxPoint x="1175" y="470" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="block8" value="&lt;b&gt;Final Classification&lt;/b&gt;&lt;br&gt;&lt;br&gt;• Faulty Module (1)&lt;br&gt;&lt;br&gt;• Non-Faulty Module (0)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;verticalAlign=middle;spacingLeft=20;" parent="1" vertex="1">
+                    <mxGeometry x="1110" y="460" width="150" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="evaluation" value="&lt;b&gt;Model Evaluation&lt;/b&gt;&lt;br&gt;&lt;br&gt;• Accuracy&lt;br&gt;• Recall&lt;br&gt;• Precision&lt;br&gt;• F1-score&lt;br&gt;• ROC-AUC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;align=left;verticalAlign=middle;fontColor=#333333;spacingLeft=15;" parent="1" vertex="1">
+                    <mxGeometry x="1320" y="160" width="140" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow_eval" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=1.5;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=5 5;" parent="1" source="block6" target="evaluation" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="1260" y="180" as="sourcePoint"/>
+                        <mxPoint x="1310" y="130" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
